@@ -1195,10 +1195,25 @@
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="282" parent="232" name="PRIMARY">
+    <column id="282" parent="232" name="parent_id">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="283" parent="232" name="fk_shop_category_self">
+      <ColNames>parent_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="284" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>shop_category_id</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="285" parent="232" name="fk_shop_category_self">
+      <ColNames>parent_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop_category</RefTableName>
+      <RefColNames>shop_category_id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>
