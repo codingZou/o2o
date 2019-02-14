@@ -55,4 +55,15 @@ public class ShopServiceImplTest extends BaseTest {
         ShopExecution updateShop = shopService.updateShop(shop, is, shopImg.getName());
         System.out.println("shop图片地址为：" + updateShop.getShop().getShopImg());
     }
+
+    @Test
+    public void getListShop() {
+        Shop shopCondition = new Shop();
+        PersonInfo owner = new PersonInfo();
+        owner.setUserId(12L);
+        shopCondition.setOwner(owner);
+        ShopExecution se = shopService.getListShop(shopCondition, 3, 2);
+        System.out.println("店铺条数：" + se.getShopList().size());
+        System.out.println("店铺总条数：" + se.getCount());
+    }
 }
