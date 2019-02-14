@@ -1,5 +1,5 @@
 $(function () {
-    var shopId = getQueryString('shopId');
+    var shopId = getQueryString("shopId");
     var isEdit = shopId ? true : false;
     var initUrl = '/o2o/shopadmin/getshopinitinfo';
     var registerShopUrl = '/o2o/shopadmin/registershop';
@@ -23,13 +23,13 @@ $(function () {
                     $("#shop-category").append('<option value="'
                         + item.shopCategoryId + '">' + item.shopCategoryName + '</option>');
                 })*/
-                $("#shop-category").append('<option value="'
-                    + shop.shopCategory.shopCategoryId + '">' + shop.shopCategory.shopCategoryName + '</option>');
+                $("#shop-category").append("<option value='"
+                    + shop.shopCategory.shopCategoryId + "'>" + shop.shopCategory.shopCategoryName + "</option>");
                 // $("shop-category option").val(shop.shopCategory.shopCategoryName);
-                $("#shop-category").attr('disabled', 'disabled');
+                $("#shop-category").attr("disabled", "disabled");
                 $.each(data.areaList, function (index, item) {
-                    $("#area").append('<option value="'
-                        + item.areaId + '">' + item.areaName + '</option>');
+                    $("#area").append("<option value='"
+                        + item.areaId + "'>" + item.areaName + "</option>");
                 })
             }
         })
@@ -39,12 +39,12 @@ $(function () {
         $.getJSON(initUrl, function (data) {
             if (data.success) {
                 $.each(data.shopCategoryList, function (index, item) {
-                    $("#shop-category").append('<option value="'
-                        + item.shopCategoryId + '">' + item.shopCategoryName + '</option>');
+                    $("#shop-category").append("<option value='"
+                        + item.shopCategoryId + "'>" + item.shopCategoryName + "</option>");
                 })
                 $.each(data.shopAreaList, function (index, item) {
-                    $("#area").append('<option value="'
-                        + item.areaId + '">' + item.areaName + '</option>');
+                    $("#area").append("<option value='"
+                        + item.areaId + "'>" + item.areaName + "</option>");
                 })
             }
         })
