@@ -76,14 +76,14 @@ $(function () {
         var shopImg = $("#shop-img")[0].files[0];
         var formData = new FormData();
         if (!shopImg) {
-            alert("请输入上传的图片");
+            $.toast("请输入上传的图片");
             return;
         }
         formData.append("shopImg", shopImg);
         formData.append("shopStr", JSON.stringify(shop));
         var verifyCodeActual = $("#j-captcha").val();
         if (!verifyCodeActual) {
-            alert("请输入验证码！");
+            $.toast("请输入验证码！");
             return;
         }
         formData.append("verifyCodeActual", verifyCodeActual);
@@ -96,9 +96,9 @@ $(function () {
             cache: false,
             success: function (data) {
                 if (data.success) {
-                    alert("提交成功");
+                    $.toast("提交成功");
                 } else {
-                    alert("提交失败" + "原因为：" + data.errMsg);
+                    $.toast("提交失败" + "原因为：" + data.errMsg);
                     $("#captcha_img").click();
                 }
             }

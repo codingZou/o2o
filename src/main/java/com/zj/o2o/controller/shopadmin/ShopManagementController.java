@@ -253,11 +253,18 @@ public class ShopManagementController {
         return modelMap;
     }
 
+    /**
+     * 查询店铺详情信息
+     *
+     * @param request
+     * @param shopId
+     * @return
+     */
     @RequestMapping(value = "getshopmanagementinfo", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
+    public Map<String, Object> getShopManagementInfo(HttpServletRequest request, @RequestParam(value = "shopId") long shopId) {
         Map<String, Object> modelMap = new HashMap<>();
-        long shopId = Long.parseLong(request.getParameter("shopId"));
+//        long shopId = Long.parseLong(request.getParameter("shopId"));
         if (shopId <= 0) {
             Object currentShopObj = request.getSession().getAttribute("currentShop");
             if (currentShopObj == null) {
@@ -271,6 +278,7 @@ public class ShopManagementController {
         } else {
             Shop currentShop = new Shop();
             currentShop.setShopId(shopId);
+            // 将当前操作的店铺存入session中
             request.getSession().setAttribute("currentShop", currentShop);
             modelMap.put("redirect", false);
         }

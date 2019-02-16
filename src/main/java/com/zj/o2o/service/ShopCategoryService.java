@@ -10,4 +10,7 @@ import java.util.List;
  */
 public interface ShopCategoryService {
     List<ShopCategory> listShopCategory(ShopCategory shopCategoryCondition);
+
+
+
 }

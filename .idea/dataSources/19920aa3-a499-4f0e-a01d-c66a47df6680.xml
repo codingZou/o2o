@@ -916,11 +916,12 @@
     <table id="230" parent="4" name="tb_person_info">
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="231" parent="4" name="tb_shop">
+    <table id="231" parent="4" name="tb_product_category"/>
+    <table id="232" parent="4" name="tb_shop">
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="232" parent="4" name="tb_shop_category"/>
-    <column id="233" parent="229" name="area_id">
+    <table id="233" parent="4" name="tb_shop_category"/>
+    <column id="234" parent="229" name="area_id">
       <Position>1</Position>
       <Comment>区域id</Comment>
       <DataType>int(5)|0s</DataType>
@@ -928,19 +929,19 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="229" name="area_name">
+    <column id="235" parent="229" name="area_name">
       <Position>2</Position>
       <Comment>区域名</Comment>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="229" name="area_desc">
+    <column id="236" parent="229" name="area_desc">
       <Position>3</Position>
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="229" name="priority">
+    <column id="237" parent="229" name="priority">
       <Position>4</Position>
       <Comment>权重</Comment>
       <DataType>int(2)|0s</DataType>
@@ -948,76 +949,76 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="229" name="create_time">
+    <column id="238" parent="229" name="create_time">
       <Position>5</Position>
       <Comment>创建时间</Comment>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="229" name="last_edit_time">
+    <column id="239" parent="229" name="last_edit_time">
       <Position>6</Position>
       <Comment>最后修改时间</Comment>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="239" parent="229" name="UK_AREA">
+    <index id="240" parent="229" name="UK_AREA">
       <ColNames>area_name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="240" parent="229" name="PRIMARY">
+    <key id="241" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>area_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="241" parent="229" name="UK_AREA">
+    <key id="242" parent="229" name="UK_AREA">
       <ColNames>area_name</ColNames>
       <UnderlyingIndexName>UK_AREA</UnderlyingIndexName>
     </key>
-    <column id="242" parent="230" name="user_id">
+    <column id="243" parent="230" name="user_id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="230" name="name">
+    <column id="244" parent="230" name="name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="230" name="gender">
+    <column id="245" parent="230" name="gender">
       <Position>3</Position>
       <DataType>varchar(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="230" name="phone">
+    <column id="246" parent="230" name="phone">
       <Position>4</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="230" name="email">
+    <column id="247" parent="230" name="email">
       <Position>5</Position>
       <DataType>varchar(128)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="230" name="profile_img">
+    <column id="248" parent="230" name="profile_img">
       <Position>6</Position>
       <Comment>头像地址</Comment>
       <DataType>varchar(1024)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="230" name="create_time">
+    <column id="249" parent="230" name="create_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="230" name="last_edit_time">
+    <column id="250" parent="230" name="last_edit_time">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="230" name="enable_status">
+    <column id="251" parent="230" name="enable_status">
       <Position>9</Position>
       <Comment>0:表示禁止使用1:允许使用</Comment>
       <DataType>int(2)|0s</DataType>
@@ -1025,191 +1026,247 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="251" parent="230" name="PRIMARY">
+    <key id="252" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="252" parent="231" name="shop_id">
+    <column id="253" parent="231" name="product_category_id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="231" name="product_category_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="231" name="product_category_desc">
+      <Position>3</Position>
+      <DataType>varchar(500)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="231" name="priority">
+      <Position>4</Position>
+      <DataType>int(2)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="231" name="create_time">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="231" name="last_edit_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="259" parent="231" name="shop_id">
+      <Position>7</Position>
+      <DataType>int(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="260" parent="231" name="fk_procate_shop">
+      <ColNames>shop_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="261" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>product_category_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="262" parent="231" name="fk_procate_shop">
+      <ColNames>shop_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop</RefTableName>
+      <RefColNames>shop_id</RefColNames>
+    </foreign-key>
+    <column id="263" parent="232" name="shop_id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="231" name="owner_id">
+    <column id="264" parent="232" name="owner_id">
       <Position>2</Position>
       <Comment>店铺创建人</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="231" name="area_id">
+    <column id="265" parent="232" name="area_id">
       <Position>3</Position>
       <DataType>int(5)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="231" name="shop_category_id">
+    <column id="266" parent="232" name="shop_category_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="231" name="shop_name">
+    <column id="267" parent="232" name="shop_name">
       <Position>5</Position>
       <DataType>varchar(256)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="231" name="shop_desc">
+    <column id="268" parent="232" name="shop_desc">
       <Position>6</Position>
       <DataType>varchar(1024)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="231" name="shop_addr">
+    <column id="269" parent="232" name="shop_addr">
       <Position>7</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="231" name="phone">
+    <column id="270" parent="232" name="phone">
       <Position>8</Position>
       <DataType>varchar(128)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="231" name="shop_img">
+    <column id="271" parent="232" name="shop_img">
       <Position>9</Position>
       <DataType>varchar(1024)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="231" name="longitude">
+    <column id="272" parent="232" name="longitude">
       <Position>10</Position>
       <DataType>double(16,12 digit)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="231" name="latitude">
+    <column id="273" parent="232" name="latitude">
       <Position>11</Position>
       <DataType>double(16,12 digit)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="231" name="priority">
+    <column id="274" parent="232" name="priority">
       <Position>12</Position>
       <DataType>int(3)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="231" name="create_time">
+    <column id="275" parent="232" name="create_time">
       <Position>13</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="231" name="last_edit_time">
+    <column id="276" parent="232" name="last_edit_time">
       <Position>14</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="231" name="enable_status">
+    <column id="277" parent="232" name="enable_status">
       <Position>15</Position>
       <DataType>int(2)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="231" name="advice">
+    <column id="278" parent="232" name="advice">
       <Position>16</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="268" parent="231" name="fk_shop_profile">
+    <index id="279" parent="232" name="fk_shop_profile">
       <ColNames>owner_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="269" parent="231" name="fk_shop_area">
+    <index id="280" parent="232" name="fk_shop_area">
       <ColNames>area_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="270" parent="231" name="fk_shop_shopcate">
+    <index id="281" parent="232" name="fk_shop_shopcate">
       <ColNames>shop_category_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="271" parent="231" name="PRIMARY">
+    <key id="282" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>shop_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="272" parent="231" name="fk_shop_profile">
+    <foreign-key id="283" parent="232" name="fk_shop_profile">
       <ColNames>owner_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
       <RefTableName>tb_person_info</RefTableName>
       <RefColNames>user_id</RefColNames>
     </foreign-key>
-    <foreign-key id="273" parent="231" name="fk_shop_area">
+    <foreign-key id="284" parent="232" name="fk_shop_area">
       <ColNames>area_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
       <RefTableName>tb_area</RefTableName>
       <RefColNames>area_id</RefColNames>
     </foreign-key>
-    <foreign-key id="274" parent="231" name="fk_shop_shopcate">
+    <foreign-key id="285" parent="232" name="fk_shop_shopcate">
       <ColNames>shop_category_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
       <RefTableName>tb_shop_category</RefTableName>
       <RefColNames>shop_category_id</RefColNames>
     </foreign-key>
-    <column id="275" parent="232" name="shop_category_id">
+    <column id="286" parent="233" name="shop_category_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="232" name="shop_category_name">
+    <column id="287" parent="233" name="shop_category_name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="232" name="shop_category_desc">
+    <column id="288" parent="233" name="shop_category_desc">
       <Position>3</Position>
       <DataType>varchar(1000)|0s</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="232" name="shop_category_img">
+    <column id="289" parent="233" name="shop_category_img">
       <Position>4</Position>
       <DataType>varchar(2000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="232" name="priority">
+    <column id="290" parent="233" name="priority">
       <Position>5</Position>
       <DataType>int(2)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="232" name="create_time">
+    <column id="291" parent="233" name="create_time">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="232" name="last_edit_time">
+    <column id="292" parent="233" name="last_edit_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="232" name="parent_id">
+    <column id="293" parent="233" name="parent_id">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="283" parent="232" name="fk_shop_category_self">
+    <index id="294" parent="233" name="fk_shop_category_self">
       <ColNames>parent_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="284" parent="232" name="PRIMARY">
+    <key id="295" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>shop_category_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="285" parent="232" name="fk_shop_category_self">
+    <foreign-key id="296" parent="233" name="fk_shop_category_self">
       <ColNames>parent_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
       <RefTableName>tb_shop_category</RefTableName>

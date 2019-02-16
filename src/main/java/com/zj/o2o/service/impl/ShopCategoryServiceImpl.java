@@ -28,4 +28,5 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 
         return shopCategoryDao.listShopCategory(shopCategoryCondition);
     }
+
 }
