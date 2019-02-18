@@ -1,6 +1,7 @@
 package com.zj.o2o.service.impl;
 
 import com.zj.o2o.dao.ProductCategoryDao;
+import com.zj.o2o.dao.ProductDao;
 import com.zj.o2o.dto.ProductCategoryExecution;
 import com.zj.o2o.entity.ProductCategory;
 import com.zj.o2o.enums.ProductCategoryStateEnum;
@@ -20,6 +21,8 @@ import java.util.List;
 public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     private ProductCategoryDao productCategoryDao;
+    @Autowired
+    private ProductDao productDao;
 
     /**
      * 获取商品类别列表
@@ -55,7 +58,16 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     @Transactional
     public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) {
-        //TODO 将此商品类别下的商品id置为空
+        //TODO 将此商品类别下的商品id置为空(先去解除product里商品与productCategoryId的关联不然删除不了)
+        try {
+            int effectNum = productDao.updateProductCategoryToNull(productCategoryId);
+            if (effectNum < 0) {
+                throw new ProductCategoryOperationException("商品类别更新失败");
+            }
+        } catch (ProductCategoryOperationException e) {
+            throw new ProductCategoryOperationException("deleteProductCategory error:" + e.getMessage());
+        }
+        // 再去删除productCategory
         try {
             int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
             if (effectedNum <= 0) {

@@ -50,7 +50,7 @@ public class ShopDaoTest extends BaseTest {
 
     @Test
     public void getShopByID() {
-        Shop shop = shopDao.getShopByID(33l);
+        Shop shop = shopDao.getShopById(33l);
         System.out.println(shop.getArea().getAreaId() + shop.getArea().getAreaName());
     }
 

@@ -23,12 +23,12 @@ $(function () {
                     $("#shop-category").append('<option value="'
                         + item.shopCategoryId + '">' + item.shopCategoryName + '</option>');
                 })*/
-                $("#shop-category").append("<option value='"
+                $("#shop-category").append("<option data-id='"
                     + shop.shopCategory.shopCategoryId + "'>" + shop.shopCategory.shopCategoryName + "</option>");
                 // $("shop-category option").val(shop.shopCategory.shopCategoryName);
                 $("#shop-category").attr("disabled", "disabled");
                 $.each(data.areaList, function (index, item) {
-                    $("#area").append("<option value='"
+                    $("#area").append("<option data-id='"
                         + item.areaId + "'>" + item.areaName + "</option>");
                 })
             }
@@ -39,11 +39,11 @@ $(function () {
         $.getJSON(initUrl, function (data) {
             if (data.success) {
                 $.each(data.shopCategoryList, function (index, item) {
-                    $("#shop-category").append("<option value='"
+                    $("#shop-category").append("<option data-id='"
                         + item.shopCategoryId + "'>" + item.shopCategoryName + "</option>");
                 })
                 $.each(data.shopAreaList, function (index, item) {
-                    $("#area").append("<option value='"
+                    $("#area").append("<option data-id='"
                         + item.areaId + "'>" + item.areaName + "</option>");
                 })
             }
@@ -68,10 +68,16 @@ $(function () {
             }).data("id")
         };*/
         shop.shopCategory = {
-            shopCategoryId: $("#shop-category option:selected").val()
+            shopCategoryId: $("#shop-category").find('option').not(function () {
+                return !this.selected;
+            }).data("id")
+            // (此方法需要引入jq库)shopCategoryId: $("#shop-category option:selected").val()
         };
         shop.area = {
-            areaId: $("#area option:selected").val()
+            areaId: $('#area').find('option').not(function () {
+                return !this.selected;
+            }).data("id")
+            // (此方法需要引入jq库)areaId: $("#area option:selected").val()
         };
         var shopImg = $("#shop-img")[0].files[0];
         var formData = new FormData();

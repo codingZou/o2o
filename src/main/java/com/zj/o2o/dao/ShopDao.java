@@ -37,7 +37,7 @@ public interface ShopDao {
      * @param shopId
      * @return
      */
-    Shop getShopByID(Long shopId);
+    Shop getShopById(Long shopId);
 
     /**
      * 新增店铺

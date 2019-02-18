@@ -59,10 +59,6 @@ public class ProductCategoryController {
     @ResponseBody
     public Map<String, Object> getProductCategoryList(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
-        // Todo be removed
-        /*Shop shop = new Shop();
-        shop.setShopId(38l);
-        request.getSession().setAttribute("currentShop", shop);*/
         Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
         if (currentShop != null && currentShop.getShopId() > 0) {
             try {

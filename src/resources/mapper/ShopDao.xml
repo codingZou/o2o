@@ -101,7 +101,7 @@
         order by s.priority desc
         limit #{rowIndex},#{pageSize}
     </select>
-    <select id="getShopByID" parameterType="java.lang.Long" resultMap="shopMap">
+    <select id="getShopById" parameterType="java.lang.Long" resultMap="shopMap">
         select s.shop_id,s.shop_name,s.shop_desc,s.shop_addr,
         s.phone,s.shop_img,s.priority,s.create_time,s.last_edit_time,
         s.enable_status,s.advice,a.area_id,a.area_name,sc.shop_category_id,

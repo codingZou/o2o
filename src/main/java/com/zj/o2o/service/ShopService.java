@@ -1,9 +1,8 @@
 package com.zj.o2o.service;
 
+import com.zj.o2o.dto.ImageHolder;
 import com.zj.o2o.dto.ShopExecution;
 import com.zj.o2o.entity.Shop;
-
-import java.io.InputStream;
 
 /**
  * @author zj
@@ -12,9 +11,9 @@ import java.io.InputStream;
 public interface ShopService {
     ShopExecution getListShop(Shop shopCondition, int pageIndex, int pageSize);
 
-    ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName);
+    ShopExecution addShop(Shop shop, ImageHolder thumbnail);
 
     Shop getShopById(Long shopId);
 
-    ShopExecution updateShop(Shop shop, InputStream shopImgInputStream, String fileName);
+    ShopExecution updateShop(Shop shop, ImageHolder thumbnail);
 }

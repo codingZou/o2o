@@ -1,6 +1,7 @@
 package com.zj.o2o.service;
 
 import com.zj.o2o.BaseTest;
+import com.zj.o2o.dto.ImageHolder;
 import com.zj.o2o.dto.ShopExecution;
 import com.zj.o2o.entity.Area;
 import com.zj.o2o.entity.PersonInfo;
@@ -41,7 +42,8 @@ public class ShopServiceImplTest extends BaseTest {
         shop.setAdvice("审核中");
         File shopImg = new File("C:/Users/17935/Desktop/image/five.png");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.addShop(shop, is, shopImg.getName());
+        ImageHolder imageHolder = new ImageHolder("five.png", is);
+        ShopExecution shopExecution = shopService.addShop(shop, imageHolder);
         assertEquals(ShopStateEnum.CHECK.getState(), shopExecution.getState());
     }
 
@@ -52,7 +54,8 @@ public class ShopServiceImplTest extends BaseTest {
         shop.setShopName("测试更新店铺2");
         File shopImg = new File("C:/Users/17935/Desktop/image/two.png");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution updateShop = shopService.updateShop(shop, is, shopImg.getName());
+        ImageHolder imageHolder = new ImageHolder("two.png", is);
+        ShopExecution updateShop = shopService.updateShop(shop, imageHolder);
         System.out.println("shop图片地址为：" + updateShop.getShop().getShopImg());
     }
 

@@ -1,6 +1,7 @@
 package com.zj.o2o.controller.shopadmin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zj.o2o.dto.ImageHolder;
 import com.zj.o2o.dto.ShopExecution;
 import com.zj.o2o.entity.Area;
 import com.zj.o2o.entity.PersonInfo;
@@ -71,15 +72,16 @@ public class ShopManagementController {
         // 修改店铺信息
         if (shop != null && shop.getShopId() != null) {
             ShopExecution se = null;
-            try {
-                if (shopImg == null) {
-                    se = shopService.updateShop(shop, null, null);
-                } else {
-                    se = shopService.updateShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+            if (shopImg == null) {
+                se = shopService.updateShop(shop, null);
+            } else {
+                ImageHolder imageHolder = null;
+                try {
+                    imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", se.getStateInfo());
+                se = shopService.updateShop(shop, imageHolder);
             }
             if (se.getState() == ShopStateEnum.SUCCESS.getState()) {
                 modelMap.put("success", true);
@@ -171,15 +173,16 @@ public class ShopManagementController {
             return modelMap;
         }
         if (shop != null && shopImg != null) {
-            PersonInfo owner = (PersonInfo) request.getAttribute("user");
+            PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
             shop.setOwner(owner);
             ShopExecution se = null;
+            ImageHolder imageHolder = null;
             try {
-                se = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
             } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", se.getStateInfo());
+                e.printStackTrace();
             }
+            se = shopService.addShop(shop, imageHolder);
             if (se.getState() == ShopStateEnum.CHECK.getState()) {
                 modelMap.put("success", true);
                 // 该用户可以操作的店铺列表
