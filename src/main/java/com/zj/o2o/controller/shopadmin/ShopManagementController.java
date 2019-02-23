@@ -215,6 +215,7 @@ public class ShopManagementController {
         List<ShopCategory> shopCategoryList = null;
         List<Area> areaList = null;
         try {
+            //获取parentId不为空的二级类别
             shopCategoryList = shopCategoryService.listShopCategory(new ShopCategory());
             areaList = areaService.listArea();
             map.put("shopCategoryList", shopCategoryList);

@@ -25,20 +25,13 @@ public class ShopDaoTest extends BaseTest {
     @Test
     public void listShop() {
         Shop shopCondition = new Shop();
-        PersonInfo owner = new PersonInfo();
-        owner.setUserId(12L);
-        shopCondition.setOwner(owner);
-        List<Shop> list = shopDao.listShop(shopCondition, 0, 5);
+        ShopCategory childCategroy = new ShopCategory();
+        ShopCategory parentCategroy = new ShopCategory();
+        parentCategroy.setShopCategoryId(12l);
+        childCategroy.setParent(parentCategroy);
+        shopCondition.setShopCategory(childCategroy);
+        List<Shop> list = shopDao.listShop(shopCondition, 0, 10);
         System.out.println("店铺条数：" + list.size());
-        Area area = new Area();
-        area.setAreaId(9);
-        ShopCategory shopCategory = new ShopCategory();
-        shopCategory.setShopCategoryId(37L);
-        shopCondition.setShopCategory(shopCategory);
-        shopCondition.setShopName("1");
-        shopCondition.setArea(area);
-        List<Shop> shopList = shopDao.listShop(shopCondition, 0, 5);
-        System.out.println("新店铺条数：" + shopList.size());
     }
 
     @Test

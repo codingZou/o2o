@@ -90,9 +90,9 @@
             </if>
             <if test="productCondition.productCategory !=null
             and productCondition.productCategory.productCategoryId !=null">
-                and product_category_id = #{productCategory.productCategoryId}
+                and product_category_id = #{productCondition.productCategory.productCategoryId}
             </if>
-            <if test="productCondition.productName !=null">
+            <if test="productCondition.productName !=null and productCondition.productName != '' ">
                 and product_name like '%' #{productCondition.productName} '%'
             </if>
             <if test="productCondition.enableStatus !=null">
@@ -112,7 +112,7 @@
             </if>
             <if test="productCondition.productCategory !=null
             and productCondition.productCategory.productCategoryId !=null">
-                and product_category_id = #{productCategory.productCategoryId}
+                and product_category_id = #{productCondition.productCategory.productCategoryId}
             </if>
             <if test="productCondition.productName !=null">
                 and product_name like '%' #{productCondition.productName} '%'

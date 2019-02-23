@@ -104,7 +104,7 @@ $(function () {
                 if (data.success) {
                     $.toast("提交成功");
                 } else {
-                    $.toast("提交失败" + "原因为：" + data.errMsg);
+                    $.toast('提交失败' + '原因为：' + data.errMsg);
                     $("#captcha_img").click();
                 }
             }

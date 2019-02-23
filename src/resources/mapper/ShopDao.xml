@@ -27,12 +27,11 @@
         </association>
     </resultMap>
     <insert id="insertShop" parameterType="shop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
-      insert into
-      tb_shop(shop_id,owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr,
-      phone,shop_img,priority,create_time,last_edit_time,enable_status,advice)
-      values (#{shopId},#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},
-      #{shopName},#{shopDesc},#{shopAddr},#{phone},#{shopImg},#{priority},#{createTime},
-      #{lastEditTime},#{enableStatus},#{advice})
+        insert into tb_shop(shop_id, owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr,
+                            phone, shop_img, priority, create_time, last_edit_time, enable_status, advice)
+        values (#{shopId}, #{owner.userId}, #{area.areaId}, #{shopCategory.shopCategoryId},
+                #{shopName}, #{shopDesc}, #{shopAddr}, #{phone}, #{shopImg}, #{priority}, #{createTime},
+                #{lastEditTime}, #{enableStatus}, #{advice})
     </insert>
     <update id="updateShop" parameterType="shop">
         update tb_shop
@@ -86,11 +85,16 @@
             <if test="shopCondition.area !=null and shopCondition.area.areaId !=null">
                 and s.area_id = #{shopCondition.area.areaId}
             </if>
-            <if test="shopCondition.shopName !=null">
+            <if test="shopCondition.shopName !=null and shopCondition.shopName !='' ">
                 and s.shop_name like '%' #{shopCondition.shopName} '%'
             </if>
             <if test="shopCondition.enableStatus !=null">
                 and s.enable_status = #{shopCondition.enableStatus}
+            </if>
+            <if test="shopCondition.shopCategory !=null and shopCondition.shopCategory.parent !=null
+            and shopCondition.shopCategory.parent.shopCategoryId !=null">
+                and s.shop_category_id in(select shop_category_id from tb_shop_category
+                where parent_id = #{shopCondition.shopCategory.parent.shopCategoryId})
             </if>
             <if test="shopCondition.owner !=null and shopCondition.owner.userId !=null">
                 and s.owner_id = #{shopCondition.owner.userId}
@@ -102,14 +106,27 @@
         limit #{rowIndex},#{pageSize}
     </select>
     <select id="getShopById" parameterType="java.lang.Long" resultMap="shopMap">
-        select s.shop_id,s.shop_name,s.shop_desc,s.shop_addr,
-        s.phone,s.shop_img,s.priority,s.create_time,s.last_edit_time,
-        s.enable_status,s.advice,a.area_id,a.area_name,sc.shop_category_id,
-        sc.shop_category_name
-        from tb_shop s,tb_area a,tb_shop_category sc
-        where s.area_id=a.area_id
-        and s.shop_category_id=sc.shop_category_id
-        and s.shop_id = #{shopId}
+        select s.shop_id,
+               s.shop_name,
+               s.shop_desc,
+               s.shop_addr,
+               s.phone,
+               s.shop_img,
+               s.priority,
+               s.create_time,
+               s.last_edit_time,
+               s.enable_status,
+               s.advice,
+               a.area_id,
+               a.area_name,
+               sc.shop_category_id,
+               sc.shop_category_name
+        from tb_shop s,
+             tb_area a,
+             tb_shop_category sc
+        where s.area_id = a.area_id
+          and s.shop_category_id = sc.shop_category_id
+          and s.shop_id = #{shopId}
     </select>
     <select id="getShopCount" resultType="int">
         select count(1)
@@ -129,6 +146,11 @@
             </if>
             <if test="shopCondition.owner !=null and shopCondition.owner.userId !=null">
                 and s.owner_id = #{shopCondition.owner.userId}
+            </if>
+            <if test="shopCondition.shopCategory !=null and shopCondition.shopCategory.parent !=null
+            and shopCondition.shopCategory.parent.shopCategoryId !=null">
+                and s.shop_category_id in(select shop_category_id from tb_shop_category
+                where parent_id = #{shopCondition.shopCategory.parent.shopCategoryId})
             </if>
             and s.area_id=a.area_id
             and s.shop_category_id=sc.shop_category_id

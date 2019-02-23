@@ -9,8 +9,11 @@ import java.util.List;
  * @create 2019-01-24 21:25
  */
 public interface ShopCategoryService {
+    /**
+     * 根据查询条件获取ShopCategory列表
+     *
+     * @param shopCategoryCondition
+     * @return
+     */
     List<ShopCategory> listShopCategory(ShopCategory shopCategoryCondition);
-
-
-
 }

@@ -11,9 +11,9 @@ public class PathUtil {
         String os = System.getProperty("os.name");// 获取操作系统
         String basePath = "";
         if (os.toLowerCase().startsWith("win")) {
-            basePath = "F:/projectdev/image/";
+            basePath = "F:/projectdev/image";
         } else {
-            basePath = "D:/projectdev/image/";
+            basePath = "D:/projectdev/image";
         }
         // 因不同操作系统分隔符不一样所以统一替换
         basePath = basePath.replace("/", seperator);
@@ -21,7 +21,7 @@ public class PathUtil {
     }
 
     public static String getShopImagePath(long shopId) {
-        String imagePath = "upload/item/shop/" + shopId + "/";
+        String imagePath = "/upload/item/shop/" + shopId + "/";
         return imagePath.replace("/", seperator);
     }
 }

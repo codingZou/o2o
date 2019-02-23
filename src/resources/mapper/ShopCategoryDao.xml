@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zj.o2o.dao.ShopCategoryDao">
-    <sql id="Base_Column_List">
-      shop_category_id,shop_category_name,shop_category_img,priority,
-      create_time,last_edit_time,parent_id
-    </sql>
     <select id="listShopCategory" resultType="com.zj.o2o.entity.ShopCategory">
         select
-        <include refid="Base_Column_List"/>
+        shop_category_id,
+        shop_category_name,
+        shop_category_desc,
+        shop_category_img,
+        priority,
+        create_time,
+        last_edit_time,
+        parent_id
         from tb_shop_category
         <where>
+            <if test="shopCategoryCondition ==null">
+                and parent_id is null
+            </if>
             <if test="shopCategoryCondition !=null">
                 and parent_id is not null
             </if>
-            <if test="shopCategoryCondition.parent !=null">
+            <if test="shopCategoryCondition !=null and shopCategoryCondition.parent !=null
+                and shopCategoryCondition.parent.shopCategoryId !=null">
                 and parent_id = #{shopCategoryCondition.parent.shopCategoryId}
             </if>
         </where>
