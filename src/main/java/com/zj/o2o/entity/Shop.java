@@ -31,6 +31,15 @@ public class Shop {
     private Area area;
     private PersonInfo owner;
     private ShopCategory shopCategory;
+    private ShopCategory parentCategory;
+
+    public ShopCategory getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(ShopCategory parentCategory) {
+        this.parentCategory = parentCategory;
+    }
 
     public Long getShopId() {
         return shopId;
