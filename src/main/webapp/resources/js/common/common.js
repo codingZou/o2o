@@ -23,6 +23,7 @@ function changeVerifyCode(img) {
     img.src = "../Kaptcha?" + Math.floor(Math.random() * 100);
 }
 
+// 使用正则表达式获取url?后面的参数
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);

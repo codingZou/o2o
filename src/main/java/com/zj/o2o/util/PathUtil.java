@@ -13,7 +13,7 @@ public class PathUtil {
         if (os.toLowerCase().startsWith("win")) {
             basePath = "F:/projectdev/image";
         } else {
-            basePath = "D:/projectdev/image";
+            basePath = "/usr/local/projectdev/image";
         }
         // 因不同操作系统分隔符不一样所以统一替换
         basePath = basePath.replace("/", seperator);
