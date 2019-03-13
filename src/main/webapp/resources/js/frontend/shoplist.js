@@ -136,7 +136,7 @@ $(function () {
                 $(e.target).removeClass("button-fill");
                 parentId = "";
             } else {
-                e(e.target).addClass("button-fill").siblings().removeClass("button-fill");
+                $(e.target).addClass("button-fill").siblings().removeClass("button-fill");
             }
             // 由于查询条件改变,清空店铺列表再进行查询
             $(".list-div").empty();
