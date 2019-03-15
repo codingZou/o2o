@@ -17,7 +17,7 @@ Date.prototype.Format = function (fmt) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
                 : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
-}
+};
 
 function changeVerifyCode(img) {
     img.src = "../Kaptcha?" + Math.floor(Math.random() * 100);
@@ -31,4 +31,34 @@ function getQueryString(name) {
         return decodeURIComponent(r[2]);
     }
     return '';
+}
+
+// 简易的校验表单
+function checkForm(shop) {
+    if (!shop.shopName) {
+        $.toast("商铺名称不能为空");
+        return false;
+    }
+    if (!shop.shopAddr) {
+        $.toast("商铺地址不能为空");
+        return false;
+    }
+    if (!shop.phone) {
+        $.toast("商铺电话号码不能为空");
+        return false;
+    }
+    if (!$("#shop-img").val()) {
+        $.toast("请上传商铺图片");
+        return false;
+    }
+    if (!shop.shopDesc) {
+        $.toast("商铺简介不能为空");
+        return false;
+    }
+    // var verifyCodeActual = ;
+    if (!$("#j-captcha").val()) {
+        $.toast("请输入验证码！");
+        return false;
+    }
+    return true
 }

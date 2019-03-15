@@ -81,17 +81,13 @@ $(function () {
         };
         var shopImg = $("#shop-img")[0].files[0];
         var formData = new FormData();
-        if (!shopImg) {
-            $.toast("请输入上传的图片");
-            return;
-        }
         formData.append("shopImg", shopImg);
         formData.append("shopStr", JSON.stringify(shop));
-        var verifyCodeActual = $("#j-captcha").val();
-        if (!verifyCodeActual) {
-            $.toast("请输入验证码！");
+        // 校验表单
+        if (!checkForm(shop)) {
             return;
         }
+        var verifyCodeActual = $("#j-captcha").val();
         formData.append("verifyCodeActual", verifyCodeActual);
         $.ajax({
             url: (isEdit ? editShopUrl : registerShopUrl),
@@ -102,6 +98,11 @@ $(function () {
             cache: false,
             success: function (data) {
                 if (data.success) {
+                    if (isEdit) {
+                        $("#captcha_img").click();
+                    } else {
+                        window.location.href = "/o2o/shopadmin/shoplist";
+                    }
                     $.toast("提交成功");
                 } else {
                     $.toast('提交失败' + '原因为：' + data.errMsg);
