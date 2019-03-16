@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServletRequest;
  * @create 2019-01-26 13:45
  */
 public class CodeUtil {
-    public static boolean checkVerifyCode(HttpServletRequest request, String verifyCodeActual) {
+    public static boolean checkVerifyCode(HttpServletRequest request) {
         // 获取session中的验证码
         String verifyCodeExpected = (String) request.getSession().getAttribute(
                 com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-        /*String verifyCodeActual = HttpServletRequestUtil.getString(request,
-                "verifyCodeActual");*/
+        String verifyCodeActual = request.getParameter("verifyCodeActual");
         // equalsIgnoreCase:忽悠大小写进行比较
         if (verifyCodeActual == null
                 || !verifyCodeActual.equalsIgnoreCase(verifyCodeExpected)) {

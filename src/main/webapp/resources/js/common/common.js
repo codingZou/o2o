@@ -55,7 +55,6 @@ function checkForm(shop) {
         $.toast("商铺简介不能为空");
         return false;
     }
-    // var verifyCodeActual = ;
     if (!$("#j-captcha").val()) {
         $.toast("请输入验证码！");
         return false;

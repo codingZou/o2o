@@ -10,6 +10,8 @@ $(function () {
                 if (data.success) {
                     handleList(data.shopList);
                     handleUser(data.user);
+                } else {
+                    $.toast(data.errMsg);
                 }
             }
         })
@@ -54,6 +56,13 @@ $(function () {
         } else {
             return "";
         }
-
     }
+
+    $("#log-out").click(function () {
+        window.location.href = "/o2o/shopadmin/userlogin";
+    });
+    $("#change-psw").click(function () {
+        window.location.href = "/o2o/shopadmin/changepsw";
+    });
+
 });

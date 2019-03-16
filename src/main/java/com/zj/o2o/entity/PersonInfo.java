@@ -4,7 +4,7 @@ package com.zj.o2o.entity;
 import java.util.Date;
 
 /**
- * 用户实体
+ * 用户详细信息实体
  *
  * @author zj
  * @create 2019-01-18 13:13
@@ -16,6 +16,7 @@ public class PersonInfo {
     private String profileImg;
     private String email;
     private String gender;
+    private String phone;
     // 用户状态
     private Integer enableStatus;
     // 用户身份标识 1.代表顾客 2.代表店家 3.代表超级管理员
@@ -24,6 +25,14 @@ public class PersonInfo {
     private Date createTime;
     // 用户最后编辑时间
     private Date lastEditTime;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Long getUserId() {
         return userId;

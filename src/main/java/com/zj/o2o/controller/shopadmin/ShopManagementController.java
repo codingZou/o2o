@@ -46,15 +46,14 @@ public class ShopManagementController {
      *
      * @param request
      * @param shopImg
-     * @param verifyCodeActual
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/updateshop", method = {RequestMethod.POST})
     public Map<String, Object> updateShop(HttpServletRequest request, @RequestParam(value = "shopImg")
-            CommonsMultipartFile shopImg, @RequestParam(value = "verifyCodeActual") String verifyCodeActual) {
+            CommonsMultipartFile shopImg) {
         Map<String, Object> modelMap = new HashMap<>();
-        if (!CodeUtil.checkVerifyCode(request, verifyCodeActual)) {
+        if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "验证码错误!");
             return modelMap;
@@ -129,15 +128,14 @@ public class ShopManagementController {
      *
      * @param request
      * @param shopImg
-     * @param verifyCodeActual
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/registershop", method = {RequestMethod.POST})
     public Map<String, Object> registerShop(HttpServletRequest request, @RequestParam(value = "shopImg")
-            CommonsMultipartFile shopImg, @RequestParam(value = "verifyCodeActual") String verifyCodeActual) {
+            CommonsMultipartFile shopImg) {
         Map<String, Object> modelMap = new HashMap<>();
-        if (!CodeUtil.checkVerifyCode(request, verifyCodeActual)) {
+        if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "验证码错误!");
             return modelMap;
@@ -238,21 +236,27 @@ public class ShopManagementController {
     @ResponseBody
     public Map<String, Object> getShopList(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
-        PersonInfo user = new PersonInfo();
+        // TODO
+        /*PersonInfo user = new PersonInfo();
         user.setUserId(12L);
         user.setName("张三");
-        request.getSession().setAttribute("user", user);
-        user = (PersonInfo) request.getSession().getAttribute("user");
-        try {
-            Shop shopCondition = new Shop();
-            shopCondition.setOwner(user);
-            ShopExecution se = shopService.getListShop(shopCondition, 0, 100);
-            modelMap.put("shopList", se.getShopList());
-            modelMap.put("success", true);
-            modelMap.put("user", user);
-        } catch (Exception e) {
+        request.getSession().setAttribute("user", user);*/
+        PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
+        if (user != null) {
+            try {
+                Shop shopCondition = new Shop();
+                shopCondition.setOwner(user);
+                ShopExecution se = shopService.getListShop(shopCondition, 0, 100);
+                modelMap.put("shopList", se.getShopList());
+                modelMap.put("success", true);
+                modelMap.put("user", user);
+            } catch (Exception e) {
+                modelMap.put("success", false);
+                modelMap.put("errMsg", e.getMessage());
+            }
+        } else {
             modelMap.put("success", false);
-            modelMap.put("errMsg", e.getMessage());
+            modelMap.put("errMsg", "session is null");
         }
         return modelMap;
     }
@@ -273,7 +277,7 @@ public class ShopManagementController {
             Object currentShopObj = request.getSession().getAttribute("currentShop");
             if (currentShopObj == null) {
                 modelMap.put("redirect", true);
-                modelMap.put("url", "/o2o/shop/shopList");
+                modelMap.put("url", "/o2o/shopadmin/shopList");
             } else {
                 Shop currentShop = (Shop) currentShopObj;
                 modelMap.put("redirect", false);

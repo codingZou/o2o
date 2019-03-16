@@ -24,4 +24,9 @@ public class PathUtil {
         String imagePath = "/upload/item/shop/" + shopId + "/";
         return imagePath.replace("/", seperator);
     }
+
+    public static String getUserImagePath(long userId) {
+        String userImagePath = "/upload/item/user/" + userId + "/";
+        return userImagePath.replace("/", seperator);
+    }
 }

@@ -70,11 +70,11 @@ public class ProductManagementController {
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> addProduct(HttpServletRequest request, @RequestParam(value = "verifyCodeActual")
-            String verifyCodeActual, @RequestParam(value = "thumbnail") CommonsMultipartFile thumbnail) {
+    public Map<String, Object> addProduct(HttpServletRequest request, @RequestParam(value = "thumbnail")
+            CommonsMultipartFile thumbnail) {
         Map<String, Object> modelMap = new HashMap<>();
         // 验证码校验
-        if (!CodeUtil.checkVerifyCode(request, verifyCodeActual)) {
+        if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "验证码错误!");
             return modelMap;
@@ -162,12 +162,10 @@ public class ProductManagementController {
 
     @RequestMapping(value = "/updateproduct", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> updateProduct(HttpServletRequest request, @RequestParam(value = "verifyCodeActual", required = false)
-            String verifyCodeActual, MultipartFile thumbnail,
-                                             boolean statusChange) {
+    public Map<String, Object> updateProduct(HttpServletRequest request, MultipartFile thumbnail, boolean statusChange) {
         Map<String, Object> modelMap = new HashMap<>();
         // 验证码校验
-        if (!statusChange && !CodeUtil.checkVerifyCode(request, verifyCodeActual)) {
+        if (!statusChange && !CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "验证码错误!");
             return modelMap;

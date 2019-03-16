@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.o2o.dao.LocalAuthDao">
+    <resultMap id="localAuthResultMap" type="com.zj.o2o.entity.LocalAuth">
+        <id column="local_auth_id" property="localAuthId"/>
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="create_time" property="createTime"/>
+        <result column="last_edit_time" property="lastEditTime"/>
+        <association property="personInfo" column="user_id"
+                     javaType="com.zj.o2o.entity.PersonInfo">
+            <id column="user_id" property="userId"/>
+            <result column="name" property="name"/>
+            <result column="birthday" property="birthday"/>
+            <result column="gender" property="gender"/>
+            <result column="phone" property="phone"/>
+            <result column="email" property="email"/>
+            <result column="profile_img" property="profileImg"/>
+            <result column="customer_flag" property="customerFlag"/>
+            <result column="shop_owner_flag" property="shopOwnerFlag"/>
+            <result column="admin_flag" property="adminFlag"/>
+            <result column="create_time" property="createTime"/>
+            <result column="last_edit_time" property="lastEditTime"/>
+            <result column="enable_status" property="enableStatus"/>
+        </association>
+    </resultMap>
+    <select id="queryLocalAuthByUserNameAndPwd" parameterType="String" resultMap="localAuthResultMap">
+        select l.local_auth_id,
+               l.user_id,
+               l.user_name,
+               l.password,
+               l.create_time,
+               l.last_edit_time,
+               p.user_id,
+               p.name,
+               p.gender,
+               p.phone,
+               p.email,
+               p.profile_img,
+               p.create_time,
+               p.last_edit_time,
+               p.enable_status,
+               p.user_type
+        from tb_local_auth l
+                 left join tb_person_info p on l.user_id = p.user_id
+        where l.user_name = #{userName}
+          and l.password = #{password}
+    </select>
+    <insert id="insertLocalAuth" parameterType="com.zj.o2o.entity.LocalAuth" useGeneratedKeys="true"
+            keyProperty="localAuthId" keyColumn="local_auth_id">
+        insert into tb_local_auth(user_name, password, user_id, create_time, last_edit_time)
+        VALUES (#{userName}, #{password}, #{personInfo.userId}, #{createTime}, #{lastEditTime})
+    </insert>
+    <update id="updateLocalAuth">
+        update tb_local_auth
+        <set>
+            <if test="newPassword !=null">password = #{newPassword},</if>
+            <if test="localAuth.lastEditTime !=null">last_edit_time = #{localAuth.lastEditTime}</if>
+        </set>
+        where user_id = #{localAuth.userId}
+        and user_name = #{localAuth.userName}
+        and password = #{localAuth.password}
+    </update>
+</mapper>
