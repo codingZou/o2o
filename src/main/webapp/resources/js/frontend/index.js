@@ -4,7 +4,6 @@ $(function () {
     $.getJSON(listMainInfoUrl, function (data) {
         if (data.success) {
             var headLineList = data.headLineList;
-
             $.each(headLineList, function (index, item) {
                 $(".swiper-wrapper").append("<div class='swiper-slide img-wrap'>"
                     + "<a href='" + item.lineLink + "' external><img class='banner-img' src='"
@@ -21,18 +20,35 @@ $(function () {
             // 遍历大类列表，拼接出两两(col-50)一行的类别
             $.each(shopCategoryList, function (index, item) {
                 $(".row").append("<div class='col-50 shop-classify' data-category='"
-                    + item.shopCategoryId+ "'>" + "<div class='word'>"
+                    + item.shopCategoryId + "'>" + "<div class='word'>"
                     + "<p class='shop-title'>" + item.shopCategoryName + "</p>"
                     + "<p class='shop-desc'>" + item.shopCategoryDesc + "</p>" + "</div>"
                     + "<div class='shop-classify-img-warp'>" + "<img class='shop-img' src='"
                     + item.shopCategoryImg + "'>" + "</div>" + "</div>")
-            })
+            });
+            $(".round_icon").attr("src", data.user.profileImg);
+            $("#name").text(data.user.name);
+            if (data.user) {
+                $("#login").remove();
+            }
+        } else {
+            $.toast(data.errMsg);
+            if (!data.user) {
+                $("#log-out").remove();
+            }
         }
     });
     $("#me").click(function () {
-        $.openPanel("#panel-right-demo");
+        $.openPanel("#panel-left-demo");
     });
-
+    $("#login").click(function () {
+        var usertype = $("#login").attr("usertype");
+        window.location.href = "/o2o/local/userlogin?usertype=" + usertype;
+    });
+    $("#change-psw").click(function () {
+        var usertype = $("#change-psw").attr("usertype");
+        window.location.href = "/o2o/local/changepsw?usertype=" + usertype;
+    });
     $(".row").on("click", ".shop-classify", function (e) {
         var shopCategroyId = e.currentTarget.dataset.category;
         var newUrl = "/o2o/frontend/shoplist?parentId=" + shopCategroyId;

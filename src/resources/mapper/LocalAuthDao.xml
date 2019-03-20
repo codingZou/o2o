@@ -17,12 +17,10 @@
             <result column="phone" property="phone"/>
             <result column="email" property="email"/>
             <result column="profile_img" property="profileImg"/>
-            <result column="customer_flag" property="customerFlag"/>
-            <result column="shop_owner_flag" property="shopOwnerFlag"/>
-            <result column="admin_flag" property="adminFlag"/>
             <result column="create_time" property="createTime"/>
             <result column="last_edit_time" property="lastEditTime"/>
             <result column="enable_status" property="enableStatus"/>
+            <result column="user_type" property="userType"/>
         </association>
     </resultMap>
     <select id="queryLocalAuthByUserNameAndPwd" parameterType="String" resultMap="localAuthResultMap">

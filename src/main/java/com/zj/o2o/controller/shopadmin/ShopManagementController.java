@@ -248,8 +248,10 @@ public class ShopManagementController {
                 shopCondition.setOwner(user);
                 ShopExecution se = shopService.getListShop(shopCondition, 0, 100);
                 modelMap.put("shopList", se.getShopList());
-                modelMap.put("success", true);
+                // 获取店铺列表之后，将店铺列表放入session中作为权限验证依据，因为每个账号只能操作自己的店铺
+                request.getSession().setAttribute("shopList", se.getShopList());
                 modelMap.put("user", user);
+                modelMap.put("success", true);
             } catch (Exception e) {
                 modelMap.put("success", false);
                 modelMap.put("errMsg", e.getMessage());
@@ -272,7 +274,6 @@ public class ShopManagementController {
     @ResponseBody
     public Map<String, Object> getShopManagementInfo(HttpServletRequest request, @RequestParam(value = "shopId") long shopId) {
         Map<String, Object> modelMap = new HashMap<>();
-//        long shopId = Long.parseLong(request.getParameter("shopId"));
         if (shopId <= 0) {
             Object currentShopObj = request.getSession().getAttribute("currentShop");
             if (currentShopObj == null) {

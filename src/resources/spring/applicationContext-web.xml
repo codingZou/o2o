@@ -28,11 +28,34 @@
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.zj.o2o.controller"/>
 
-     <!--权限拦截器 -->
-    <!--<mvc:interceptors>
+    <!-- 权限拦截器 -->
+    <mvc:interceptors>
+        <!-- 校验用户是否已经登录 -->
         <mvc:interceptor>
-            <mvc:mapping path="/shop/**"/>
-            <mvc:exclude-mapping path="/shop"
+            <mvc:mapping path="/shopadmin/**"/>
+            <bean id="shopLoginInterceptor" class="com.zj.o2o.interceptor.shopadmin.ShopLoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+
+        <mvc:interceptor>
+            <mvc:mapping path="/frontend/**"/>
+            <bean id="frontendLoginInterceptor" class="com.zj.o2o.interceptor.frontend.FrontendLoginInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/shopadmin/**"/>
+            <!-- 不拦截的路径 -->
+            <!-- 店铺列表 -->
+            <mvc:exclude-mapping path="/shopadmin/shoplist"/>
+            <mvc:exclude-mapping path="/shopadmin/getshoplist"/>
+            <!-- 店铺注册 -->
+            <mvc:exclude-mapping path="/shopadmin/shopoperation"/>
+            <mvc:exclude-mapping path="/shopadmin/getshopinitinfo"/>
+            <mvc:exclude-mapping path="/shopadmin/registershop"/>
+
+            <!-- 店铺管理 -->
+            <mvc:exclude-mapping path="/shopadmin/shopmanagement"/>
+            <mvc:exclude-mapping path="/shopadmin/getshopmanagementinfo"/>
+            <bean id="permissionInterceptor" class="com.zj.o2o.interceptor.shopadmin.ShopPermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -8,12 +8,11 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet"
-          href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
-    <link rel="stylesheet"
-          href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
-    <link rel="stylesheet"
-          href="../resources/css/frontend/shopdetail.css">
+    <link rel="stylesheet" href="../resources/basic/css/sm.min.css">
+    <link rel="stylesheet" href="../resources/basic/css/sm-extend.min.css">
+    href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="../resources/css/frontend/shopdetail.css">
+
 </head>
 <body>
 <div class="page-group">
@@ -108,18 +107,27 @@
 
     <!--侧边栏  -->
     <div class="panel-overlay"></div>
-    <div class="panel panel-right panel-reveal" id="panel-right-demo">
+    <div class="panel panel-left panel-reveal" id="panel-left-demo">
         <div class="content-block">
             <p>
-                <a href="/myo2o/frontend/myrecord" class="close-panel">消费记录</a>
+                <span><img class="round_icon"></span>
+                <span id="name"></span>
             </p>
             <p>
-                <a href="/myo2o/frontend/mypoint" class="close-panel">我的积分</a>
+                <a href="#" id="login" usertype="1" class="close-panel">登录</a>
             </p>
             <p>
-                <a href="/myo2o/frontend/pointrecord" class="close-panel">积分兑换记录</a>
+                <a href="#" class="close-panel">消费记录</a>
             </p>
-            <!-- Click on link with "close-panel" class will close panel -->
+            <p>
+                <a href="#" class="close-panel">我的积分</a>
+            </p>
+            <p>
+                <a href="#" id="change-psw" usertype="1" class="close-panel">修改密码</a>
+            </p>
+            <p>
+                <a href="#" id="log-out" usertype="1" class="close-panel">退出账号</a>
+            </p>
         </div>
     </div>
 </div>
@@ -133,6 +141,8 @@
         src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript'
         src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type="text/javascript" src="../resources/js/frontend/index.js"
+        charset="utf-8"></script>
 <script type='text/javascript'
         src='../resources/js/frontend/shopdetail.js' charset='utf-8'></script>
 </body>

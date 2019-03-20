@@ -1,5 +1,7 @@
 $(function () {
-    var url = "/o2o/shopadmin/updatelocalauthpwd";
+    var url = "/o2o/local/updatelocalauthpwd";
+    // 1代表客户2代表商家
+    var usertype = getQueryString("usertype");
     $("#submit").click(function () {
         /*
         var formData = new FormData();
@@ -38,7 +40,7 @@ $(function () {
             success: function (data) {
                 if (data.success) {
                     $.toast("提交成功！");
-                    window.location.href = "/o2o/shopadmin/userlogin";
+                    window.location.href = "/o2o/local/userlogin?usertype=" + usertype;
                 } else {
                     $.toast("提交失败！" + data.errMsg);
                     $("#captcha_img").click();
@@ -46,8 +48,11 @@ $(function () {
             }
         });
     });
-
     $("#back").click(function () {
-        window.location.href = "/o2o/shopadmin/shoplist";
+        if (usertype == 1) {
+            window.location.href = "/o2o/frontend/index"
+        } else if (usertype == 2) {
+            window.location.href = "/o2o/shopadmin/shoplist";
+        }
     });
 });

@@ -1,7 +1,8 @@
 $(function () {
-    var loginUrl = "/o2o/shopadmin/userlogincheck";
+    var loginUrl = "/o2o/local/userlogincheck";
+    // 1代表客户2代表商家
+    var usertype = getQueryString("usertype");
     var loginCount = 0;
-
     $("#submit").click(function () {
         var userName = $("#username").val();
         var password = $("#psw").val();
@@ -22,6 +23,7 @@ $(function () {
             type: "post",
             dataType: "json",
             data: {
+                usertype: usertype,
                 userName: userName,
                 password: password,
                 verifyCodeActual: verifyCodeActual,
@@ -30,7 +32,11 @@ $(function () {
             success: function (data) {
                 if (data.success) {
                     $.toast("登录成功！");
-                    window.location.href = "/o2o/shopadmin/shoplist";
+                    if (usertype == 1) {
+                        window.location.href = "/o2o/frontend/index";
+                    } else {
+                        window.location.href = "/o2o/shopadmin/shoplist";
+                    }
                 } else {
                     $.toast("登录失败！" + data.errMsg);
                     loginCount++;
@@ -44,6 +50,6 @@ $(function () {
     });
 
     $("#register").click(function () {
-        window.location.href = "/o2o/shopadmin/userregister";
+        window.location.href = "/o2o/local/userregister";
     });
 });

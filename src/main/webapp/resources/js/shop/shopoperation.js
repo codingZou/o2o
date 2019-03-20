@@ -1,8 +1,8 @@
 $(function () {
     var shopId = getQueryString("shopId");
     var isEdit = shopId ? true : false;
-    var initUrl = '/o2o/shopadmin/getshopinitinfo';
-    var registerShopUrl = '/o2o/shopadmin/registershop';
+    var initUrl = "/o2o/shopadmin/getshopinitinfo";
+    var registerShopUrl = "/o2o/shopadmin/registershop";
     var shopInfoUrl = "/o2o/shopadmin/getshopbyid?shopId=" + shopId;
     var editShopUrl = "/o2o/shopadmin/updateshop";
     if (isEdit) {
@@ -100,10 +100,12 @@ $(function () {
                 if (data.success) {
                     if (isEdit) {
                         $("#captcha_img").click();
+                        window.location.href = "/o2o/shopadmin/shopmanagement?shopId=" + shopId;
+                        $.toast("提交成功");
                     } else {
                         window.location.href = "/o2o/shopadmin/shoplist";
+                        $.toast("提交成功");
                     }
-                    $.toast("提交成功");
                 } else {
                     $.toast('提交失败' + '原因为：' + data.errMsg);
                     $("#captcha_img").click();

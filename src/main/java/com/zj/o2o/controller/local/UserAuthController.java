@@ -1,4 +1,4 @@
-package com.zj.o2o.controller.shopadmin;
+package com.zj.o2o.controller.local;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zj.o2o.dto.ImageHolder;
@@ -26,7 +26,7 @@ import java.util.Map;
  * @create 2019-03-15 18:39
  */
 @Controller
-@RequestMapping(value = "/shopadmin")
+@RequestMapping(value = "/local")
 public class UserAuthController {
     @Autowired
     private LocalAuthService localAuthService;
@@ -44,7 +44,7 @@ public class UserAuthController {
     @RequestMapping(value = "/userlogincheck", method = RequestMethod.POST)
     @ResponseBody
     private Map<String, Object> userLoginCheck(HttpServletRequest request, String userName, String password,
-                                               String verifyCodeActual, boolean needVerify) {
+                                               String verifyCodeActual, boolean needVerify, String usertype) {
         Map<String, Object> modelMap = new HashMap<>();
         if (needVerify && !CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
@@ -54,10 +54,13 @@ public class UserAuthController {
         if (userName != null && !"".equals(userName) && password != null && !"".equals(password)) {
             password = MD5.getMd5(password);
             LocalAuth localAuth = localAuthService.getLocalAuthByUserNameAndPwd(userName, password);
-            if (localAuth != null) {
+            // 判空并且判断账户类型是否一致
+            if (localAuth != null && localAuth.getPersonInfo() != null &&
+                    String.valueOf(localAuth.getPersonInfo().getUserType()).equals(usertype)) {
                 // 将用户信息存入session中
                 request.getSession().setAttribute("user", localAuth.getPersonInfo());
                 modelMap.put("success", true);
+                modelMap.put("user", localAuth.getPersonInfo());
             } else {
                 modelMap.put("success", false);
                 modelMap.put("errMsg", "用户名或密码错误");
@@ -157,5 +160,22 @@ public class UserAuthController {
             modelMap.put("errMsg", "seesion is null");
         }
         return modelMap;
+    }
+
+    /**
+     * 退出系统
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> userLogoutCheck(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap();
+        // 清除session中的数据
+        request.getSession().setAttribute("user", null);
+        modelMap.put("success", true);
+        return modelMap;
+
     }
 }

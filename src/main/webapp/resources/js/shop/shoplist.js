@@ -58,11 +58,9 @@ $(function () {
         }
     }
 
-    $("#log-out").click(function () {
-        window.location.href = "/o2o/shopadmin/userlogin";
-    });
     $("#change-psw").click(function () {
-        window.location.href = "/o2o/shopadmin/changepsw";
+        var usertype = $("#change-psw").attr("usertype");
+        window.location.href = "/o2o/local/changepsw?usertype=" + usertype;
     });
 
 });

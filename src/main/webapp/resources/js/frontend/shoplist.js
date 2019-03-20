@@ -163,9 +163,9 @@ $(function () {
     });
 
     //点击后打开右侧栏
-    $("#me").click(function () {
+    /*$("#me").click(function () {
         $.openPanel("#panel-right-demo");
-    });
+    });*/
 
     //初始化页面
     $.init();

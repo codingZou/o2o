@@ -23,3 +23,12 @@
     height: 1.5rem;
     font-size: .7rem;
 }
+.round_icon{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
