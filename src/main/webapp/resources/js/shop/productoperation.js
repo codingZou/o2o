@@ -114,7 +114,7 @@ $(function () {
                 success: function (data) {
                     if (data.success) {
                         $.toast("提交成功!");
-                        $("#captcha_img").click();
+                        window.location.href = "/o2o/shopadmin/productmanage";
                     } else {
                         $.toast("提交失败!" + data.errMsg);
                         $("#captcha_img").click();
