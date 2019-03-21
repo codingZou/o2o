@@ -136,8 +136,7 @@ $(function () {
     // 点击商品的卡片进入该商品的详情页
     $(".list-div").on("click", ".card", function (e) {
         var productId = e.currentTarget.dataset.productId;
-        window.location.href = "/o2o/frontend/productdetail?productId="
-            + productId;
+        window.location.href = "/o2o/frontend/productdetail?productId=" + productId;
     });
     // 需要查询的商品名字发生变化后,重置页码,清空原来的商品列表，按照新的名字去查询
     $("#search").on("change", function (e) {

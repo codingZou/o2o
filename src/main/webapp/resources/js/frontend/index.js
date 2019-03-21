@@ -26,16 +26,23 @@ $(function () {
                     + "<div class='shop-classify-img-warp'>" + "<img class='shop-img' src='"
                     + item.shopCategoryImg + "'>" + "</div>" + "</div>")
             });
-            $(".round_icon").attr("src", data.user.profileImg);
-            $("#name").text(data.user.name);
-            if (data.user) {
-                $("#login").remove();
+            if (data != null && data.user != null) {
+                if (data.user.profileImg != null) {
+                    $(".round_icon").attr("src", data.user.profileImg);
+                }
+                if (data.user.name != null) {
+                    $("#name").text(data.user.name);
+                }
+                if (data.user) {
+                    $("#login").remove();
+                }
+            } else {
+                $("#log-out").remove();
+                $("#change-psw").remove();
             }
+
         } else {
             $.toast(data.errMsg);
-            if (!data.user) {
-                $("#log-out").remove();
-            }
         }
     });
     $("#me").click(function () {

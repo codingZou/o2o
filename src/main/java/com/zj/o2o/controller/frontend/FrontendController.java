@@ -24,43 +24,10 @@ public class FrontendController {
         // 转发到店铺详细信息
         return "frontend/shopdetail";
     }
-    /*@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
-    private String showMainPage() {
-        return "frontend/mainpage";
-    }
 
     @RequestMapping(value = "/productdetail", method = RequestMethod.GET)
     private String showProductDetail() {
+        // 转发到商品信息详情页
         return "frontend/productdetail";
     }
-
-    @RequestMapping(value = "/shopdetail", method = RequestMethod.GET)
-    private String showShopDetail() {
-        return "frontend/shopdetail";
-    }
-
-    @RequestMapping(value = "/mypoint", method = RequestMethod.GET)
-    private String myPoint() {
-        return "frontend/mypoint";
-    }
-
-    @RequestMapping(value = "/myrecord", method = RequestMethod.GET)
-    private String myRecord() {
-        return "frontend/myrecord";
-    }
-
-    @RequestMapping(value = "/pointrecord", method = RequestMethod.GET)
-    private String pointRecord() {
-        return "frontend/pointrecord";
-    }
-
-    @RequestMapping(value = "/awarddetail", method = RequestMethod.GET)
-    private String awardDetail() {
-        return "frontend/awarddetail";
-    }
-
-    @RequestMapping(value = "/customerbind", method = RequestMethod.GET)
-    private String customerBind() {
-        return "frontend/customerbind";
-    }*/
 }

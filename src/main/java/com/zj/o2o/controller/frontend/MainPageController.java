@@ -39,11 +39,11 @@ public class MainPageController {
     public Map<String, Object> listMainPageInfo(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
         PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
-        if (user == null) {
+        /*if (user == null) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "请先登录");
             return modelMap;
-        }
+        }*/
         try {
             // 获取一级店铺类别列表(即prarentId为空的ShopCategory)
             List<ShopCategory> shopCategoryList = shopCategoryService.listShopCategory(null);
@@ -59,7 +59,9 @@ public class MainPageController {
             headLineCondition.setEnableStatus(1);
             List<HeadLine> headLineList = headLineService.listHeadLine(headLineCondition);
             for (HeadLine headLine : headLineList) {
-                headLine.setLineLink(request.getContextPath() + headLine.getLineLink());
+                if (!headLine.getLineLink().equals("#")) {
+                    headLine.setLineLink(request.getContextPath() + headLine.getLineLink());
+                }
             }
             modelMap.put("headLineList", headLineList);
         } catch (IOException e) {

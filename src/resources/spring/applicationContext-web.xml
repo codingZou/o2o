@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 开启SpringMvc注解模式-->
+    <!-- 开启SpringMvc注解模式 -->
     <mvc:annotation-driven/>
 
     <!-- 静态资源默认servlet配置 (1)加入对静态资源的处理：js,gif,png (2)允许使用"/"做整体映射 -->
@@ -36,10 +36,11 @@
             <bean id="shopLoginInterceptor" class="com.zj.o2o.interceptor.shopadmin.ShopLoginInterceptor"/>
         </mvc:interceptor>
 
-        <mvc:interceptor>
-            <mvc:mapping path="/frontend/**"/>
-            <bean id="frontendLoginInterceptor" class="com.zj.o2o.interceptor.frontend.FrontendLoginInterceptor"/>
-        </mvc:interceptor>
+        <!--前台拦截器-->
+        <!-- <mvc:interceptor>
+             <mvc:mapping path="/frontend/**"/>
+             <bean id="frontendLoginInterceptor" class="com.zj.o2o.interceptor.frontend.FrontendLoginInterceptor"/>
+         </mvc:interceptor>-->
 
         <mvc:interceptor>
             <mvc:mapping path="/shopadmin/**"/>

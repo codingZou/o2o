@@ -26,7 +26,7 @@
         <collection property="productImgList" column="product_id"
                     ofType="com.zj.o2o.entity.ProductImg">
             <id column="product_img_id" property="productImgId"/>
-            <result column="img_addr" property="imgAddr"/>
+            <result column="detail_img" property="imgAddr"/>
             <result column="img_desc" property="imgDesc"/>
             <result column="priority" property="priority"/>
             <result column="create_time" property="createTime"/>
