@@ -1,6 +1,7 @@
 $(function () {
     var registerUrl = "/o2o/local/userregister";
     $("#submit").click(function () {
+        var usertype = getQueryString("usertype");
         var localAuth = {};
         var personInfo = {};
         localAuth.userName = $("#userName").val();
@@ -8,6 +9,7 @@ $(function () {
         personInfo.phone = $("#phone").val();
         personInfo.email = $("#email").val();
         personInfo.name = $("#name").val();
+        personInfo.userType = usertype;
         localAuth.personInfo = personInfo;
         var thumbnail = $("#small-img")[0].files[0];
         console.log(thumbnail);

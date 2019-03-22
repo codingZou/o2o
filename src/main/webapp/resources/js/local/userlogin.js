@@ -50,6 +50,6 @@ $(function () {
     });
 
     $("#register").click(function () {
-        window.location.href = "/o2o/local/userregister";
+        window.location.href = "/o2o/local/userregister?usertype=" + usertype;
     });
 });

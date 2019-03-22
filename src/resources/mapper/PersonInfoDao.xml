@@ -5,9 +5,9 @@
             useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
         INSERT
         INTO tb_person_info(name, gender, phone, email, profile_img,
-                            create_time, last_edit_time, enable_status)
+                            create_time, last_edit_time, enable_status, user_type)
         VALUES (#{name}, #{gender}, #{phone}, #{email}, #{profileImg},
-                #{createTime}, #{lastEditTime}, #{enableStatus})
+                #{createTime}, #{lastEditTime}, #{enableStatus}, #{userType})
     </insert>
     <update id="updatePersonInfo" parameterType="com.zj.o2o.entity.PersonInfo">
         update tb_person_info
