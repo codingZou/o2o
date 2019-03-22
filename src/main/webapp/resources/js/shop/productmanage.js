@@ -5,6 +5,9 @@ $(function () {
     var statusUrl = "/o2o/shopadmin/updateproduct";
     getProductList();
 
+    /**
+     * 显示商品列表
+     */
     function getProductList() {
         $.getJSON(productListUrl, function (data) {
             if (data.success) {
@@ -36,10 +39,13 @@ $(function () {
         })
     }
 
+    /**
+     * 商品编辑/下架/预览
+     */
     $(".product-wrap").on("click", "a", function (e) {
         var target = $(e.currentTarget);
         if (target.hasClass("edit")) {
-            // 进入店铺信息编辑页面,并带有productId参数
+            // 进入商品信息编辑页面,并带有productId参数
             window.location.href = "/o2o/shopadmin/productoperation?productId="
                 + e.currentTarget.dataset.id;
         } else if (target.hasClass("status")) {
