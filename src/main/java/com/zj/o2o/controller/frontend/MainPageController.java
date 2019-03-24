@@ -49,6 +49,7 @@ public class MainPageController {
             List<ShopCategory> shopCategoryList = shopCategoryService.listShopCategory(null);
             modelMap.put("shopCategoryList", shopCategoryList);
         } catch (Exception e) {
+            e.printStackTrace();
             modelMap.put("success", false);
             modelMap.put("errMsg", e.getMessage());
             return modelMap;
@@ -65,6 +66,7 @@ public class MainPageController {
             }
             modelMap.put("headLineList", headLineList);
         } catch (IOException e) {
+            e.printStackTrace();
             modelMap.put("success", false);
             modelMap.put("errMsg", e.getMessage());
             return modelMap;

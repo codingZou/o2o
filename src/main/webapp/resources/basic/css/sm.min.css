@@ -4604,7 +4604,7 @@ body.panel-closing .page {
 
 @font-face {
     font-family: iconfont-sm;
-    src: url(//at.alicdn.com/t/font_1433401008_2229297.woff) format('woff'), url(//at.alicdn.com/t/font_1433401008_2229297.ttf) format('truetype'), url(//at.alicdn.com/t/font_1433401008_2229297.svg#iconfont) format('svg')
+    src: url('./font_1433401008_2229297.woff') format('woff'), url('./font_1433401008_2229297.ttf') format('truetype')/*, url(//at.alicdn.com/t/font_1433401008_2229297.svg#iconfont) format('svg')*/
 }
 
 .icon {
